@@ -27,13 +27,22 @@ var books []Book
 
 //Get All Books
 func getBooks(w http.ResponseWriter, r *http.Request) {
-	w.Header().Set("content-Type","application/json")
+	w.Header().Set("content-Type", "application/json")
 	json.NewEncoder(w).Encode(books)
 }
 
 //Get single Books
 func getBook(w http.ResponseWriter, r *http.Request) {
-
+	w.Header().Set("content-Type", "application.json")
+	params := mux.Vars(r) //Get params
+	//Loop through books and find with id
+	for _, item := range books {
+		if item.ID == params["id"] {
+			json.NewEncoder(w).Encode(item)
+			return
+		}
+	}
+	json.NewEncoder(w).Encode(&Book{})
 }
 
 //crewate Book
@@ -57,7 +66,7 @@ func main() {
 
 	//mock data
 	books = append(books, Book{ID: "1", Isbn: "44334", Title: "Book one", Author: &Author{Firstname: "Bawantha", Lastname: "Thilan"}})
-	books = append(books, Book{ID: "2" , Isbn: "44334", Title:"Book two" , Author: &Author{Firstname: "Joen" , Lastname: "Doe"} } )
+	books = append(books, Book{ID: "2", Isbn: "44334", Title: "Book two", Author: &Author{Firstname: "Joen", Lastname: "Doe"}})
 
 	//Route handlers / Endpoints
 	r.HandleFunc("/api/books", getBooks).Methods("GET")
