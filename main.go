@@ -26,22 +26,22 @@ func getBooks(w http.ResponseWriter, r *http.Request) {
 
 }
 
-//Get All Books
+//Get single Books
 func getBook(w http.ResponseWriter, r *http.Request) {
 
 }
 
-//Get All Books
+//crewate Book
 func createBooks(w http.ResponseWriter, r *http.Request) {
 
 }
 
-//Get All Books
+//update book
 func updateBooks(w http.ResponseWriter, r *http.Request) {
 
 }
 
-//Get All Books
+//delete book
 func deleteBooks(w http.ResponseWriter, r *http.Request) {
 
 }
